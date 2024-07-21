@@ -15,8 +15,6 @@ A versatile scientific calculator that includes advanced mathematical functions.
 ### Demo
 ![Scientific Calculator](https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png)
 
-You can view and interact with the scientific calculator [here](https://github.com/BottomsNode/Scientific-Calculator).
-
 ### Getting Started
 1. Clone the repository:
     ```bash
@@ -44,8 +42,6 @@ A simple yet functional GUI calculator built with HTML, CSS, and JavaScript, sho
 
 ### Demo
 ![Basic Calculator](https://github.com/BottomsNode/JQuery-Calculator/blob/main/simple.png)
-
-You can view and interact with the basic calculator [here](https://github.com/BottomsNode/Basic-Calculator).
 
 ### Getting Started
 1. Clone the repository:
