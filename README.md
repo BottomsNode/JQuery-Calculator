@@ -13,7 +13,8 @@ A versatile scientific calculator that includes advanced mathematical functions.
 - Clear and backspace functionality
 
 ### Demo
-![Scientific Calculator](https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png)
+![Scientific Calculator]
+<img src= "https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png" width="100">
 
 ### Getting Started
 1. Clone the repository:
