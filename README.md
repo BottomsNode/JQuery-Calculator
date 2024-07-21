@@ -40,8 +40,8 @@ A simple yet functional GUI calculator built with HTML, CSS, and JavaScript, sho
 - Clear and backspace functionality
 - History of recent calculations
 
-### Demo
-![Basic Calculator](https://github.com/BottomsNode/JQuery-Calculator/blob/main/simple.png)
+### Demo Basic Calculator
+<img src="https://github.com/BottomsNode/JQuery-Calculator/blob/main/simple.png" width="550">
 
 ### Getting Started
 1. Clone the repository:
