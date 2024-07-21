@@ -12,8 +12,8 @@ A versatile scientific calculator that includes advanced mathematical functions.
 - Mode toggling: Radians and Degrees
 - Clear and backspace functionality
 
-### Demo
-![Scientific Calculator](<img src= "https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png" width="550">)
+### Demo Scientific Calculator
+<img src= "https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png" width="550">
 
 ### Getting Started
 1. Clone the repository:
