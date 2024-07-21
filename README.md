@@ -15,7 +15,7 @@ A versatile scientific calculator that includes advanced mathematical functions.
 ### Demo
 ![Scientific Calculator](https://github.com/BottomsNode/JQuery-Calculator/blob/main/scientific.png)
 
-You can view and interact with the scientific calculator [here](width="100",https://github.com/BottomsNode/Scientific-Calculator).
+You can view and interact with the scientific calculator [here](<img src="https://github.com/BottomsNode/Scientific-Calculator" width="250"/>).
 
 ### Getting Started
 1. Clone the repository:
