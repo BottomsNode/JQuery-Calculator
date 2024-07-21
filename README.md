@@ -64,10 +64,5 @@ You can view and interact with the basic calculator [here](https://github.com/Bo
 - JavaScript
 - Bootstrap
 
-## 📚 Contribution
 
-Contributions are welcome! If you have suggestions or improvements, please create a pull request or open an issue.
-
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### Tankyou
