@@ -41,7 +41,7 @@ A simple yet functional GUI calculator built with HTML, CSS, and JavaScript, sho
 - History of recent calculations
 
 ### Demo Basic Calculator
-<img src="https://github.com/BottomsNode/JQuery-Calculator/blob/main/simple.png" width="800">
+<img src="https://github.com/BottomsNode/JQuery-Calculator/blob/main/simple.png" width="950">
 
 ### Getting Started
 1. Clone the repository:
