@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic GUI Calculator</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #display {
+            width: 55%;
+            height: 50px;
+            margin-bottom: 10px;
+            background-color: #222;
+            color: #fff;
+            text-align: right;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 24px;
+        }
+
+        .row {
+            display: flex;
+            padding-left: 10px;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            background-color: #ddd;
+            border: none;
+            border-radius: 5px;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .button.operator {
+            background-color: #ff9800;
+            color: #fff;
+        }
+
+        .button.double {
+            width: 130px;
+        }
+
+        .button.clear {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        .history {
+            margin-left: 20px;
+        }
+
+        .history-list {
+            height: 400px;
+            overflow-y: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            list-style: none;
+        }
+
+        .history-item {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .calculator, .history {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .calculator {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="calculator">
+                    <div id="display">0</div>
+                    <div class="row">
+                        <button class="button clear" id="clear">C</button>
+                        <button class="button double" id="backspace">&larr;</button>
+                        <button class="button operator" id="divide">/</button>
+                    </div>
+                    <div class="row">
+                        <button class="button" id="seven">7</button>
+                        <button class="button" id="eight">8</button>
+                        <button class="button" id="nine">9</button>
+                        <button class="button operator" id="multiply">*</button>
+                    </div>
+                    <div class="row">
+                        <button class="button" id="four">4</button>
+                        <button class="button" id="five">5</button>
+                        <button class="button" id="six">6</button>
+                        <button class="button operator" id="subtract">-</button>
+                    </div>
+                    <div class="row">
+                        <button class="button" id="one">1</button>
+                        <button class="button" id="two">2</button>
+                        <button class="button" id="three">3</button>
+                        <button class="button operator" id="add">+</button>
+                    </div>
+                    <div class="row">
+                        <button class="button double" id="zero">0</button>
+                        <button class="button" id="decimal">.</button>
+                        <button class="button operator" id="equals">=</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="history">
+                    <h4>History</h4>
+                    <ul class="history-list" id="history-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Made by ❤️ Nishit Shivdasani
+    </footer>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let display = $('#display');
+            let currentInput = '';
+            let operator = '';
+            let firstNumber = '';
+            let secondNumber = '';
+            let historyList = $('#history-list');
+
+            // Append numbers and decimal points to the display
+            $('.button').not('.operator, .clear, #equals, #backspace').click(function () {
+                const value = $(this).text();
+                if (value === '.' && currentInput.includes('.')) return; // Prevent multiple decimals
+                currentInput += value;
+                display.text(currentInput || '0');
+            });
+
+            // Handle operator buttons
+            $('.operator').click(function () {
+                if (currentInput === '' && $(this).attr('id') === 'subtract') {
+                    currentInput = '-';
+                    display.text(currentInput);
+                    return;
+                }
+                if (currentInput === '' && operator === '') return; // Ignore operator clicks when no number is entered
+
+                if (operator) {
+                    calculate();
+                }
+                firstNumber = currentInput;
+                currentInput = '';
+                operator = $(this).attr('id');
+            });
+
+            // Perform the calculation based on the operator
+            $('#equals').click(function () {
+                if (currentInput === '') return; // Ignore if no input
+
+                secondNumber = currentInput;
+                calculate();
+                operator = '';
+                firstNumber = '';
+                currentInput = display.text();
+            });
+
+            // Handle clear button
+            $('#clear').click(function () {
+                display.text('0');
+                currentInput = '';
+                operator = '';
+                firstNumber = '';
+                secondNumber = '';
+            });
+
+            // Handle backspace button
+            $('#backspace').click(function () {
+                currentInput = currentInput.slice(0, -1);
+                display.text(currentInput || '0');
+            });
+
+            // Calculate the result based on the operator
+            function calculate() {
+                let result;
+                const num1 = parseFloat(firstNumber);
+                const num2 = parseFloat(currentInput);
+
+                switch (operator) {
+                    case 'add':
+                        result = num1 + num2;
+                        break;
+                    case 'subtract':
+                        result = num1 - num2;
+                        break;
+                    case 'multiply':
+                        result = num1 * num2;
+                        break;
+                    case 'divide':
+                        if (num2 === 0) {
+                            alert('Cannot divide by zero');
+                            result = '';
+                            break;
+                        }
+                        result = num1 / num2;
+                        break;
+                }
+
+                display.text(result);
+                currentInput = result;
+
+                // Add to history
+                addToHistory(`${num1} ${getOperatorSymbol(operator)} ${num2} = ${result}`);
+            }
+
+            // Get the operator symbol
+            function getOperatorSymbol(operator) {
+                switch (operator) {
+                    case 'add':
+                        return '+';
+                    case 'subtract':
+                        return '-';
+                    case 'multiply':
+                        return '*';
+                    case 'divide':
+                        return '/';
+                    default:
+                        return '';
+                }
+            }
+
+            // Add operation to history
+            function addToHistory(operation) {
+                historyList.prepend(`<li class="history-item">${operation}</li>`);
+            }
+        });
+    </script>
+</body>
+</html>
