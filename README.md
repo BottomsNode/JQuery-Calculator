@@ -63,6 +63,3 @@ You can view and interact with the basic calculator [here](https://github.com/Bo
 - CSS
 - JavaScript
 - Bootstrap
-
-
-### Tankyou
